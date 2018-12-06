@@ -4,13 +4,23 @@ import VueRouter from 'vue-router'
 
 import Home from '@/components/home/Home'
 import Login from '@/components/login/Login'
+import Users from '@/components/users/Users'
 
 Vue.use(VueRouter)
 
 const router = new VueRouter({
-  routes: [
-    {path: '/home', component: Home},
-    {path: '/login', component: Login}
+  routes: [{
+    path: '/home',
+    component: Home,
+    children: [{
+      path: '/users',
+      component: Users
+    }]
+  },
+  {
+    path: '/login',
+    component: Login
+  }
   ]
 })
 // 添加导航守卫
@@ -27,7 +37,7 @@ const router = new VueRouter({
 //     next('/login')
 //   }
 // })
-router.forEach((to, form, next) => {
+router.beforeEach((to, form, next) => {
   if (to.path === '/login') {
     return next()
   }
