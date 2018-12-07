@@ -40,17 +40,13 @@ export default {
     }
   },
   methods: {
-    onSubmit () {
+     async onSubmit () {
       // 非空校验
-      this.$refs.loginForm.validate((valid) => {
-        if (!valid) {
-          return false
-        }
-          // 登录请求
-        axios.post('http://localhost:8888/api/private/v1/login', this.loginForm)
-        .then(res => {
-          console.log(res.data)
-          if(res.data.meta.status==200){
+      try{
+        await this.$refs.loginForm.validate()
+        // 等待promise操作的结果，成功之后执行以下代码，异步操作失败catch捕获，不执行以下代码
+        const res = await axios.post('http://localhost:8888/api/private/v1/login', this.loginForm)
+          if(res.data.meta.status===200){
             localStorage.setItem('token',res.data.data.token)
             this.$router.push('/home')
             this.$message ({
@@ -65,9 +61,17 @@ export default {
               duration: 1000
             })
           }
-        })
+      }catch (e) {
+        console.log("验证失败",e);
+        
+      }
+      // (valid) => {
+      //   if (!valid) {
+      //     return false
+      //   }
+          // 登录请求
+        
 
-      })
     },
     resetForm (formName) {
       this.$refs[formName].resetFields()
