@@ -40,11 +40,23 @@ export default {
         email: '',
         mobile: '',
         id: -1
-      }
+      },
+      // 分配角色dialog
+      showAssignRoles: false,
+      // 分配角色
+      assignRolesName: {
+        username: '',
+        roles: [],
+        rid: -1,
+        id: -1
+      },
+      // 角色列表
+      RolList: []
     }
   },
   created () {
     this.getUsersList(1, this.query)
+    this.getRoleList()
   },
   methods: {
     async getUsersList (pagenum = 1, query = '') {
@@ -175,6 +187,46 @@ export default {
       } catch (e) {
         console.log(e)
       }
+    },
+    // 用户分配角色
+    async assignRole (row) {
+      // console.log(row)
+      this.showAssignRoles = true
+      const res = await this.$http.get(`/users/${row.id}`)
+      // console.log(res)
+
+      this.assignRolesName.username = row.username
+      this.assignRolesName.rid = res.data.data.rid === -1 ? '' : res.data.data.rid
+      this.assignRolesName.id = row.id
+      // console.log(this.assignRolesName.roles)
+    },
+    // 获取所有角色列表
+    async getRoleList () {
+      const res = await this.$http.get(`/roles`)
+      this.RolList = res.data.data
+      // console.log(res)
+    },
+    // 点击确认分配角色
+    async updateRole (id) {
+      try {
+        // console.log(id)
+        const res = await this.$http.put(`users/${id}/role`, {
+          rid: this.assignRolesName.rid
+        })
+        this.$message({
+          type: 'success',
+          message: res.data.meta.msg
+        })
+        // console.log(res)
+      } catch (e) {
+        console.log(e)
+        this.$message({
+          type: 'danger',
+          message: '操作失败'
+        })
+      }
+      this.showAssignRoles = false
+      this.getUsersList(1, this.query)
     }
   }
 }
