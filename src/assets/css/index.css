@@ -6,3 +6,11 @@ html,body,#app,h3{
   margin: 0;
   padding: 0;
 }
+
+/*面包屑*/
+.el-breadcrumb{
+  padding: 10px;
+}
+ul li div.el-submenu__title{
+  font-size: 16px;
+}

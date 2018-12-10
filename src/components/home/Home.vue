@@ -89,12 +89,6 @@
       </el-aside>
       <!-- main -->
       <el-main class="home-main">
-        <!-- 面包屑 -->
-        <el-breadcrumb separator="/">
-          <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
-          <el-breadcrumb-item><a href="/users">用户管理</a></el-breadcrumb-item>
-          <el-breadcrumb-item>用户列表</el-breadcrumb-item>
-        </el-breadcrumb>
         <router-view></router-view>
       </el-main>
     </el-container>
@@ -115,14 +109,14 @@ export default {
     // handleClose(key, keyPath) {
     //   console.log(key, keyPath);
     // },
-    logout() {
+    logout () {
       this.$router.push('/login')
       this.$message({
-        type:'success',
-        message:'退出成功',
-        duration:1000
+        type: 'success',
+        message: '退出成功',
+        duration: 1000
       }),
-      localStorage.removeItem('token');
+      localStorage.removeItem('token')
     }
   }
 }
@@ -139,7 +133,7 @@ export default {
   }
   .home-header-title{
     /* padding: 0; */
-    font-size: 30px;
+    font-size: 28px;
     font-weight: bold;
     color: #fff;
     line-height: 60px;
@@ -168,11 +162,5 @@ export default {
 .el-menu-item-group__title{
   padding: 0px 0 0px 20px;
 }
-/*面包屑*/
-.el-breadcrumb{
-  padding: 10px;
-}
-ul li div.el-submenu__title{
-  font-size: 18px;
-}
+
 </style>

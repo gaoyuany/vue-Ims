@@ -8,8 +8,16 @@ import 'element-ui/lib/theme-chalk/index.css'
 import '@/assets/css/index.css'
 import axios from 'axios'
 
-// Vue.$http.prototype= axios
+Vue.prototype.$http = axios
 axios.defaults.baseURL = 'http://localhost:8888/api/private/v1/'
+// 配置axios请求拦截器
+axios.interceptors.request.use((config) => {
+  config.headers.Authorization = localStorage.getItem('token')
+  return config
+}, (error) => {
+  return Promise.reject(error)
+})
+
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 

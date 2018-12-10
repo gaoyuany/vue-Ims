@@ -5,6 +5,8 @@ import VueRouter from 'vue-router'
 import Home from '@/components/home/Home'
 import Login from '@/components/login/Login'
 import Users from '@/components/users/Users'
+import Roles from '@/components/roles/Roles'
+import Rights from '@/components/rights/Rights'
 
 Vue.use(VueRouter)
 
@@ -15,6 +17,12 @@ const router = new VueRouter({
     children: [{
       path: '/users',
       component: Users
+    }, {
+      path: '/roles',
+      component: Roles
+    }, {
+      path: '/rights',
+      component: Rights
     }]
   },
   {
@@ -23,20 +31,6 @@ const router = new VueRouter({
   }
   ]
 })
-// 添加导航守卫
-// router.beforeEach((to, form, next) => {
-//   // 如果当前访问的是登录页面，则跳转到登录页面
-//   if (to.path === '/login') {
-//     return next()
-//   }
-//   // 如果不是登录页面
-//   const token = localStorage.getItem('token')
-//   if (token) {
-//     next()
-//   } else {
-//     next('/login')
-//   }
-// })
 router.beforeEach((to, form, next) => {
   if (to.path === '/login') {
     return next()
