@@ -30,4 +30,4 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 ``` ``` ![](https://img2018.cnblogs.com/blog/1648143/201911/1648143-20191120215659437-886320118.jpg)￼ > 更多精彩文章请关注 [王明昌博客](https://www.wangmingchang.com)
 
 
-``` ``` ![](https://gas.graviti.cn/player.html?openDataSetId=97eb6f06-5f2b-4033-992f-8328430fb223&isOverview=true&isPublic=true&outSource=true)￼ > 更多精彩文章请关注 [王明昌博客](https://www.wangmingchang.com)
+``` ``` ![](https://gas.graviti.cn/player.html?openDataSetId=97eb6f06-5f2b-4033-992f-8328430fb223&isOverview=true&isPublic=true&outSource=true)￼ 
